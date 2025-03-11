@@ -1,4 +1,5 @@
 import React from "react";
+import API_BASE_URL from "../services/api";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const EventModal = ({ event, onClose, onNext, onPrevious }) => {
@@ -23,7 +24,7 @@ const EventModal = ({ event, onClose, onNext, onPrevious }) => {
                         ❮
                     </button>
 
-                    <img src={`https://school-6.onrender.com${event.Image.url}`}
+                    <img src={`${API_BASE_URL}${event.Image.url}`}
                         alt={event.Title}
                         className="img-fluid rounded"
                         style={{ maxWidth: '500px', margin: 'auto', display: 'block', borderRadius: '10px' }} />

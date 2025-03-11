@@ -6,9 +6,8 @@ import EventModal from "../components/EventModal";
 import Header from "../components/Header";
 import HeroSection from "../components/HeroSection";
 import Footer from "../components/Footer";
+import API_BASE_URL from "../services/api";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-const API_URL = "https://school-6.onrender.com/api/events?populate=*";
 
 const EventsGallery = () => {
     const [events, setEvents] = useState([]);
@@ -24,7 +23,7 @@ const EventsGallery = () => {
     
     const fetchEvents = async () => {
         try {
-            const response = await axios.get(API_URL);
+            const response = await axios.get(`${API_BASE_URL}/api/events?populate=*`);
             console.log("Fetched Events:", response.data.data);
             setEvents(response.data.data);
             setFilteredEvents(response.data.data);
@@ -34,7 +33,7 @@ const EventsGallery = () => {
             
             const scienceEvent = response.data.data.find(event => event.Title.toLowerCase().includes("science exhibition"));
             if (scienceEvent && scienceEvent.Image && scienceEvent.Image.url) {
-                setBackgroundImage(`https://school-6.onrender.com${scienceEvent.Image.url}`);
+                setBackgroundImage(`${API_BASE_URL}${scienceEvent.Image.url}`);
             }
         } catch (error) {
             console.error("Error fetching events", error);
